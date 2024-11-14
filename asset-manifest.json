@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/compound-int-calc/static/css/main.49559c44.css",
-    "main.js": "/compound-int-calc/static/js/main.8033da5b.js",
+    "main.js": "/compound-int-calc/static/js/main.17aed5fb.js",
     "static/js/453.6752a5db.chunk.js": "/compound-int-calc/static/js/453.6752a5db.chunk.js",
     "index.html": "/compound-int-calc/index.html",
     "main.49559c44.css.map": "/compound-int-calc/static/css/main.49559c44.css.map",
-    "main.8033da5b.js.map": "/compound-int-calc/static/js/main.8033da5b.js.map",
+    "main.17aed5fb.js.map": "/compound-int-calc/static/js/main.17aed5fb.js.map",
     "453.6752a5db.chunk.js.map": "/compound-int-calc/static/js/453.6752a5db.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.49559c44.css",
-    "static/js/main.8033da5b.js"
+    "static/js/main.17aed5fb.js"
   ]
 }
