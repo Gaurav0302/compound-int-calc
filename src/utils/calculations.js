@@ -1,4 +1,3 @@
-// src/utils/calculations.js
 export const calculateCompoundInterest = (
   principal,
   rate,
@@ -12,22 +11,23 @@ export const calculateCompoundInterest = (
   let interestOnInterest = 0;
   const data = [];
 
-  for (let year = 0; year <= years; year++) {
-    const yearlyContribution = year === 0 ? 0 : monthlyContribution * 12;
-    const interestEarned = balance * (rate / 100);
-
-    interestOnPrincipal += totalContributions * (rate / 100);
-    interestOnInterest = totalInterest * (rate / 100);
-
+  // Calculate for years 1 to N
+  for (let year = 1; year <= years; year++) {
+    // First add the yearly contribution
+    const yearlyContribution = monthlyContribution * 12;
+    balance += yearlyContribution;
     totalContributions += yearlyContribution;
-    totalInterest += interestEarned;
-    balance += yearlyContribution + interestEarned;
 
-    const totalInvestment = totalContributions;
-    const roi =
-      totalInvestment > 0
-        ? ((balance - totalInvestment) / totalInvestment) * 100
-        : 0;
+    // Then calculate interest on the accumulated amount
+    const interestEarned = balance * (rate / 100);
+    totalInterest += interestEarned;
+    balance += interestEarned;
+
+    // Calculate interest components
+    interestOnPrincipal = principal * (rate / 100) * year;
+    interestOnInterest = totalInterest - interestOnPrincipal;
+
+    const roi = ((balance - totalContributions) / totalContributions) * 100;
 
     data.push({
       year,
@@ -41,6 +41,19 @@ export const calculateCompoundInterest = (
       roi: roi.toFixed(2),
     });
   }
+
+  // Insert initial state as year 0 at the beginning of the array
+  data.unshift({
+    year: 0,
+    balance: principal,
+    totalContributions: principal,
+    yearlyContribution: 0,
+    interestEarned: 0,
+    totalInterest: 0,
+    interestOnPrincipal: 0,
+    interestOnInterest: 0,
+    roi: "0.00",
+  });
 
   return data;
 };
